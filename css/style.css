@@ -1,36 +1,75 @@
-/* Activity 6 layout */
+/* ===== Activity 6 layout (map left, panel right) ===== */
 
+html,
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
+#container {
+  height: 100vh; /* full screen height */
+  display: flex;
+  flex-direction: row; /* side-by-side */
+}
+
+/* Map takes most of the width */
 #map {
-  height: 600px;
-  width: 80%;
-  display: inline-block;
+  flex: 1; /* fill remaining space */
+  height: 100%;
 }
 
+/* Panel stays on the right */
 #panel {
-  width: 18%;
-  padding: 20px;
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-  line-height: 42px;
+  width: 280px; /* fixed sidebar width */
+  padding: 16px;
+  box-sizing: border-box;
+  background: #f7f7f7;
+  border-left: 1px solid #ddd;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* slider + buttons */
+/* Slider + buttons */
 .range-slider {
-  width: 70%;
+  width: 100%;
 }
 
 .step {
-  width: 45%;
-  margin-top: 10px;
+  width: 48%;
+  padding: 8px 10px;
+  cursor: pointer;
 }
 
-/* popup spacing */
+/* Popup spacing */
 .leaflet-popup-content p {
   margin: 0.2em 0;
+}
+
+/* Mobile-friendly fallback (panel goes below) */
+@media (max-width: 700px) {
+  #container {
+    flex-direction: column;
+  }
+
+  #panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #ddd;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #map {
+    height: 70vh;
+  }
+
+  .range-slider {
+    width: 90%;
+  }
 }
