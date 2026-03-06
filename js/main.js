@@ -211,13 +211,13 @@ function createLegend(initialAttribute) {
         '</div>' +
         '<div class="symbol-legend">' +
           '<div class="legend-title">Athletic Revenue</div>' +
-          '<svg id="attribute-legend" width="190" height="140">' +
+          '<svg id="attribute-legend" width="260" height="140">' +
             '<circle class="legend-circle" id="max" fill="#c8102e" fill-opacity="0.8" stroke="#111" cx="60"/>' +
             '<circle class="legend-circle" id="mean" fill="#c8102e" fill-opacity="0.8" stroke="#111" cx="60"/>' +
             '<circle class="legend-circle" id="min" fill="#c8102e" fill-opacity="0.8" stroke="#111" cx="60"/>' +
-            '<text id="max-text" x="95" y="20"></text>' +
-            '<text id="mean-text" x="95" y="45"></text>' +
-            '<text id="min-text" x="95" y="70"></text>' +
+            '<text id="max-text" x="125" y="20"></text>' +
+            '<text id="mean-text" x="125" y="45"></text>' +
+            '<text id="min-text" x="125" y="70"></text>' +
           '</svg>' +
         '</div>';
 
@@ -242,25 +242,20 @@ function updateLegend(attribute) {
 
   var circleValues = getCircleValues(attribute);
 
-// fixed positions so legend labels don't stack
-   var positions = {
-   max: 40,
-   mean: 75,
-   min: 110
-   };
+  // stack circles from the same baseline so it looks like a normal prop symbol legend
+  for (var key in circleValues) {
 
-   for (var key in circleValues) {
+    var radius = calcPropRadius(circleValues[key]);
+    var cy = 110 - radius;
 
-     var radius = calcPropRadius(circleValues[key]);
-     var cy = positions[key];
+    var circle = document.getElementById(key);
+    circle.setAttribute("cy", cy);
+    circle.setAttribute("r", radius);
 
-     var circle = document.getElementById(key);
-     circle.setAttribute("cy", cy);
-     circle.setAttribute("r", radius);
-
-     var text = document.getElementById(key + "-text");
-     text.setAttribute("y", cy + 5);
-     text.textContent = "$" + Math.round(circleValues[key]).toLocaleString();
+    var text = document.getElementById(key + "-text");
+    text.setAttribute("y", cy + 5);
+    text.textContent = key.charAt(0).toUpperCase() + key.slice(1) + ": $" +
+      Math.round(circleValues[key]).toLocaleString();
 
   }
 }
