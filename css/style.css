@@ -1,69 +1,114 @@
-/* ===== Activity 6 layout (map left, panel right) ===== */
-
-html,
-body {
-  height: 100%;
+html, body {
   margin: 0;
   padding: 0;
-}
-
-#container {
-  height: 100vh; /* full screen height */
-  display: flex;
-  flex-direction: row; /* side-by-side */
-}
-
-/* Map takes most of the width */
-#map {
-  flex: 1; /* fill remaining space */
-  height: 100%;
-}
-
-/* Panel stays on the right */
-#panel {
-  width: 320px; /* a bit wider for the slider row */
-  padding: 16px;
-  box-sizing: border-box;
+  font-family: Arial, sans-serif;
   background: #f7f7f7;
-  border-left: 1px solid #ddd;
-
-  display: flex;
-  flex-direction: column;
-  align-items: stretch; /* IMPORTANT: let control row span full width */
-  gap: 12px;
+  color: #222;
 }
 
-/* popup spacing */
-.leaflet-popup-content p {
-  margin: 0.2em 0;
-}
-
-/* ===== Sequence control row (◀ slider ▶) ===== */
-
-.sequence-control {
+#wrapper {
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+header {
+  padding: 18px 24px 8px 24px;
+}
+
+header h1 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+
+header p {
+  margin: 0;
+  max-width: 900px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+#map {
+  height: 78vh;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+footer {
+  padding: 10px 24px 18px 24px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* popup text */
+.leaflet-popup-content p {
+  margin: 0.25em 0;
+}
+
+/* slider control inside map */
+.sequence-control-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .range-slider {
-  flex: 1;
+  width: 140px;
 }
 
 .step {
-  width: 44px;
-  height: 36px;
-  font-size: 18px;
-  line-height: 1;
+  width: 34px;
+  height: 30px;
+  border: 1px solid #aaa;
+  background: #fff;
   cursor: pointer;
-
-  border: 1px solid #bbb;
-  background: #e9e9e9;
-  border-radius: 2px;
+  font-size: 16px;
 }
 
 .step:hover {
-  background: #dcdcdc;
+  background: #f0f0f0;
 }
 
+/* legend */
+.legend-control-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px 14px;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  min-width: 190px;
+}
+
+.temporal-legend {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.symbol-legend {
+  font-size: 14px;
+}
+
+.legend-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+#attribute-legend {
+  overflow: visible;
+}
+
+.legend-circle {
+  fill: #c8102e;
+  fill-opacity: 0.8;
+  stroke: #111;
+}
+
+#attribute-legend text {
+  font-size: 12px;
+  fill: #222;
+}
