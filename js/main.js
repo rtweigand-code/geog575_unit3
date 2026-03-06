@@ -242,17 +242,26 @@ function updateLegend(attribute) {
 
   var circleValues = getCircleValues(attribute);
 
-  for (var key in circleValues) {
-    var radius = calcPropRadius(circleValues[key]);
-    var cy = 110 - radius;
+// fixed positions so legend labels don't stack
+   var positions = {
+   max: 40,
+   mean: 75,
+   min: 110
+   };
 
-    var circle = document.getElementById(key);
-    circle.setAttribute("cy", cy);
-    circle.setAttribute("r", radius);
+   for (var key in circleValues) {
 
-    var text = document.getElementById(key + "-text");
-    text.setAttribute("y", cy + 5);
-    text.textContent = "$" + Math.round(circleValues[key]).toLocaleString();
+     var radius = calcPropRadius(circleValues[key]);
+     var cy = positions[key];
+
+     var circle = document.getElementById(key);
+     circle.setAttribute("cy", cy);
+     circle.setAttribute("r", radius);
+
+     var text = document.getElementById(key + "-text");
+     text.setAttribute("y", cy + 5);
+     text.textContent = "$" + Math.round(circleValues[key]).toLocaleString();
+
   }
 }
 
