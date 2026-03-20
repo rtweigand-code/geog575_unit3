@@ -1,114 +1,24 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  color: #222;
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
 }
 
-#wrapper {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+.axis text {
+    font-family: sans-serif;
+    font-size: 0.9em;
 }
 
-header {
-  padding: 18px 24px 8px 24px;
+.title {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
-header h1 {
-  margin: 0 0 8px 0;
-  font-size: 28px;
-}
-
-header p {
-  margin: 0;
-  max-width: 900px;
-  line-height: 1.5;
-  font-size: 15px;
-}
-
-#map {
-  height: 78vh;
-  width: 100%;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
-
-footer {
-  padding: 10px 24px 18px 24px;
-  font-size: 13px;
-  color: #555;
-}
-
-/* popup text */
-.leaflet-popup-content p {
-  margin: 0.25em 0;
-}
-
-/* slider control inside map */
-.sequence-control-container {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 8px 10px;
-  border-radius: 6px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.range-slider {
-  width: 140px;
-}
-
-.step {
-  width: 34px;
-  height: 30px;
-  border: 1px solid #aaa;
-  background: #fff;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.step:hover {
-  background: #f0f0f0;
-}
-
-/* legend */
-.legend-control-container {
-  background: rgba(255,255,255,0.95);
-  padding: 14px 18px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  min-width: 250px;
-}
-
-.temporal-legend {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.symbol-legend {
-  font-size: 14px;
-}
-
-.legend-title {
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-#attribute-legend {
-  overflow: visible;
-}
-
-.legend-circle {
-  fill: #c8102e;
-  fill-opacity: 0.8;
-  stroke: #111;
-}
-
-#attribute-legend text {
-  font-size: 14px;
-  fill: #222;
+.labels {
+    font-family: sans-serif;
+    font-size: 0.8em;
+    fill: black;
 }
