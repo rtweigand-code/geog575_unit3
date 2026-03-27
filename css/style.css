@@ -1,17 +1,21 @@
-/* basic page setup */
+/* just setting up the page */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+
+    /* center the map bc it looked weird stuck on the left */
+    display: flex;
+    justify-content: center;
 }
 
-/* map container */
+/* the actual map box */
 .map {
-    border: 2px solid #999;
+    border: 2px solid #999; /* just so you can see the edges */
 }
 
-/* state polygons */
+/* all the states */
 .states {
-    fill: #ddd;          /* light gray fill */
-    stroke: #333;        /* darker border */
-    stroke-width: 0.5px; /* thin outline */
+    fill: #ddd;           /* keeping it gray for now, will color later */
+    stroke: #333;         /* outline so states don’t blend together */
+    stroke-width: 0.5px;  /* thin lines looks cleaner */
 }
