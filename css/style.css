@@ -1,24 +1,17 @@
-.axis path,
-.axis line {
-    fill: none;
-    stroke: black;
-    stroke-width: 1px;
-    shape-rendering: crispEdges;
+/* basic page setup */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.axis text {
-    font-family: sans-serif;
-    font-size: 0.9em;
+/* map container */
+.map {
+    border: 2px solid #999;
 }
 
-.title {
-    font-family: sans-serif;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.labels {
-    font-family: sans-serif;
-    font-size: 0.8em;
-    fill: black;
+/* state polygons */
+.states {
+    fill: #ddd;          /* light gray fill */
+    stroke: #333;        /* darker border */
+    stroke-width: 0.5px; /* thin outline */
 }
