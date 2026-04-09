@@ -177,7 +177,7 @@ function setChart(csvData, colorScale){
             return i * fraction + (fraction - 1) / 2;
         })
         .attr("y", function(d){
-            return chartHeight - yScale(parseFloat(d[expressed])) - 5;
+            return chartHeight - yScale(parseFloat(d[expressed])) - 10;
         })
         .text(function(d, i){
             if (i % 5 === 0) { // show every 5th label
