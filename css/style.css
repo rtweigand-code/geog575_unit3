@@ -15,7 +15,31 @@ body {
 
 /* all the states */
 .states {
-    fill: #ddd;           /* keeping it gray for now, will color later */
+    /* fill gets set in JS now (choropleth), so no fixed color */
     stroke: #333;         /* outline so states don’t blend together */
-    stroke-width: 0.5px;  /* thin lines looks cleaner */
+    stroke-width: 0.5px;  /* thin lines looks better */
+}
+
+/* chart container */
+.chart {
+    margin-left: 20px; /* space between map and chart */
+}
+
+/* bars in chart */
+.bars {
+    stroke: none; /* cleaner look */
+}
+
+/* numbers on bars */
+.numbers {
+    fill: white;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* chart title */
+.chartTitle {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
 }
