@@ -179,8 +179,12 @@ function setChart(csvData, colorScale){
         .attr("y", function(d){
             return chartHeight - yScale(parseFloat(d[expressed])) + 15;
         })
-        .text(function(d){
-            return Math.round(d[expressed]);
+        .text(function(d, i){
+            if (i % 5 === 0) { // show every 5th label
+                return "$" + Math.round(d[expressed] / 1000) + "k";
+            } else {
+                return "";
+            }
         });
 
     //add chart title
