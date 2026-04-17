@@ -2,32 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>D3 Basemap</title>
+    <title>Exploring How Economic Conditions Relate to Population Growth Across U.S. States</title>
 
-    <!-- load d3 -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-
-    <!-- load topojson (needed to convert topojson to geojson) -->
     <script src="https://unpkg.com/topojson-client@3"></script>
 
-    <!-- link css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <div class="pageWrapper">
+        <header class="header">
+            <h1>Exploring How Economic Conditions Relate to Population Growth Across U.S. States</h1>
+        </header>
 
-    <!-- container to keep everything aligned -->
-    <div class="container">
+        <div class="controls">
+            <!-- dropdown gets added in js -->
+        </div>
 
-        <!-- dropdown -->
-        <div class="controls"></div>
-
-        <!-- map + chart side by side -->
-        <div class="viz"></div>
-
+        <div class="vizRow">
+            <!-- map gets added in js -->
+            <!-- chart gets added in js -->
+        </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <div class="infolabel" style="display:none;"></div>
 
+    <script src="js/main.js"></script>
 </body>
 </html>

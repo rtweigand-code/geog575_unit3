@@ -1,56 +1,126 @@
-/* page setup */
+/* overall page setup */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
 }
 
-/* main container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* keeps whole page centered and clean */
+.pageWrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px 24px 30px 24px;
 }
 
-/* dropdown area */
+/* top banner */
+.header {
+    background-color: #18344a;
+    color: white;
+    padding: 18px 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* dropdown row */
 .controls {
-    margin: 20px;
+    margin-bottom: 18px;
 }
 
-/* map + chart row */
-.viz {
+.dropdown {
+    font-size: 15px;
+    padding: 8px 12px;
+    border: 1px solid #b8c2cc;
+    border-radius: 6px;
+    background-color: white;
+    color: #222;
+}
+
+/* map + chart next to each other */
+.vizRow {
     display: flex;
     gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
-/* map */
+/* map box */
 .map {
-    border: 2px solid #999;
+    background-color: white;
+    border: 1px solid #cfd7df;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* states */
+/* state outlines */
 .states {
-    stroke: #333;
-    stroke-width: 0.5px;
+    stroke: #ffffff;
+    stroke-width: 0.7px;
 }
 
-/* chart */
+/* highlighted state/bar */
+.selected {
+    stroke: #111;
+    stroke-width: 2px;
+}
+
+/* chart box */
 .chart {
-    border: 2px solid #999;
+    background-color: white;
+    border: 1px solid #cfd7df;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* bars */
+/* chart bars */
 .bars {
     stroke: none;
 }
 
-/* labels */
-.numbers {
-    fill: black;
-    font-size: 10px;
+/* chart title */
+.chartTitle {
+    font-size: 18px;
+    font-weight: bold;
+    fill: #18344a;
 }
 
-/* title */
-.chartTitle {
-    font-size: 16px;
-    font-weight: bold;
+/* state labels on x */
+.chartLabels {
+    font-size: 9px;
+    fill: #333;
+}
+
+/* axis line */
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #999;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 11px;
+    fill: #333;
+}
+
+/* tooltip style */
+.infolabel {
+    position: absolute;
+    min-width: 160px;
+    padding: 10px 12px;
+    background-color: rgba(24, 52, 74, 0.95);
+    color: white;
+    border-radius: 6px;
+    pointer-events: none;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    z-index: 9999;
 }
