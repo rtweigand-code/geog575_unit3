@@ -71,6 +71,17 @@ body {
     stroke-width: 2px;
 }
 
+.bars.selected {
+    stroke: #111;
+    stroke-width: 2px;
+    filter: brightness(0.9);
+    opacity: 1;
+}
+
+.bars {
+    stroke: none;
+}
+
 /* chart box */
 .chart {
     background-color: white;

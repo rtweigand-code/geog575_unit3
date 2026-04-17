@@ -238,15 +238,6 @@ function setChart(csvData, colorScale) {
             d3.select(".infolabel").style("display", "none");
         });
 
-    // x labels (state abbreviations)
-    chart.selectAll(".chartLabels")
-        .data(csvData)
-        .enter()
-        .append("text")
-        .attr("class", function(d) {
-            return "chartLabels " + d.state.replace(/\s+/g, "_");
-        })
-        .attr("text-anchor", "middle");
 
     updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, rightPadding, topBottomPadding, chartInnerWidth, chartInnerHeight);
 }
@@ -295,18 +286,6 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
             return colorScale(d[expressed]);
         });
 
-    d3.selectAll(".chartLabels")
-        .data(csvData, function(d) { return d.state; })
-        .transition()
-        .duration(1000)
-        .attr("x", function(d, i) {
-            return leftPadding + i * barWidth + (barWidth / 2);
-        })
-        .attr("y", chartHeight - 12)
-        .text(function(d) {
-            return d.abbr;
-        });
-
     d3.select(".chartTitle")
         .text("State Ranking by " + formatAttributeName(expressed));
 }
@@ -345,7 +324,8 @@ function highlight(props) {
         : props.name.replace(/\s+/g, "_");
 
     d3.selectAll("." + className)
-        .classed("selected", true);
+        .classed("selected", true)
+        .raise();
 }
 
 
