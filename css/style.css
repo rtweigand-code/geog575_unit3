@@ -1,45 +1,56 @@
-/* just setting up the page */
+/* page setup */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+}
 
-    /* center the map bc it looked weird stuck on the left */
+/* main container */
+.container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* the actual map box */
+/* dropdown area */
+.controls {
+    margin: 20px;
+}
+
+/* map + chart row */
+.viz {
+    display: flex;
+    gap: 20px;
+}
+
+/* map */
 .map {
-    border: 2px solid #999; /* just so you can see the edges */
+    border: 2px solid #999;
 }
 
-/* all the states */
+/* states */
 .states {
-    /* fill gets set in JS now (choropleth), so no fixed color */
-    stroke: #333;         /* outline so states don’t blend together */
-    stroke-width: 0.5px;  /* thin lines looks better */
+    stroke: #333;
+    stroke-width: 0.5px;
 }
 
-/* chart container */
+/* chart */
 .chart {
-    margin-left: 20px; /* space between map and chart */
+    border: 2px solid #999;
 }
 
-/* bars in chart */
+/* bars */
 .bars {
-    stroke: none; /* cleaner look */
+    stroke: none;
 }
 
-/* numbers on bars */
+/* labels */
 .numbers {
     fill: black;
     font-size: 10px;
-    font-family: Arial, sans-serif;
 }
 
-/* chart title */
+/* title */
 .chartTitle {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    font-family: Arial, sans-serif;
 }
