@@ -282,17 +282,17 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
         .duration(1000)
         .call(yAxis);
 
-    var barOffset = 8;
-    var barWidth = (chartInnerWidth - barOffset) / csvData.length;
+    var barPadding = 1;
+    var barWidth = chartInnerWidth / csvData.length;
 
     d3.selectAll(".bars")
         .data(csvData, function(d) { return d.state; })
         .transition()
         .duration(1000)
         .attr("x", function(d, i) {
-            return leftPadding + barOffset + i * barWidth;
+            return leftPadding + i * barWidth;
         })
-        .attr("width", barWidth - 1)
+        .attr("width", barWidth - 2)
         .attr("y", function(d) {
             return topBottomPadding + yScale(d[expressed]);
         })
