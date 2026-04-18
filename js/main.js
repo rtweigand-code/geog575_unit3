@@ -205,7 +205,7 @@ function addLegend(map, colorScale) {
 
     var legend = map.append("g")
         .attr("class", "legend")
-        .attr("transform", "translate(520, 30)"); // more centered
+        .attr("transform", "translate(550, 30)"); // more centered
 
     var colors = colorScale.range();
 
