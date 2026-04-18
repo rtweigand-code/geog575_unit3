@@ -163,11 +163,11 @@ function createDropdown(csvData) {
 function makeColorScale(data) {
 
     var colors = [
-    "#74c476",
-    "#41ab5d",
-    "#238b45",
-    "#006d2c",
-    "#00441b"
+    "#8fd19e",
+    "#63be7b",
+    "#3fae63",
+    "#228b45",
+    "#0f6b35"
 ];
 
     var scale = d3.scaleQuantile()
