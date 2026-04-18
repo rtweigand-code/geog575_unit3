@@ -102,10 +102,9 @@ body {
     fill: #18344a;
 }
 
-/* state labels on x */
-.chartLabels {
-    font-size: 9px;
-    fill: #333;
+.xAxisLabel {
+    font-size: 12px;
+    fill: #444;
 }
 
 /* axis line */

@@ -163,12 +163,12 @@ function createDropdown(csvData) {
 function makeColorScale(data) {
 
     var colors = [
-        "#edf8fb",
-        "#b2e2e2",
-        "#66c2a4",
-        "#2ca25f",
-        "#006d2c"
-    ];
+    "#74c476",
+    "#41ab5d",
+    "#238b45",
+    "#006d2c",
+    "#00441b"
+];
 
     var scale = d3.scaleQuantile()
         .range(colors);
@@ -212,6 +212,14 @@ function setChart(csvData, colorScale) {
         .attr("class", "chartTitle")
         .attr("x", 20)
         .attr("y", 30);
+
+    // x-axis label
+    chart.append("text")
+        .attr("class", "xAxisLabel")
+        .attr("x", chartWidth / 2)
+        .attr("y", chartHeight - 5)
+        .attr("text-anchor", "middle")
+        .text("U.S. States (sorted)");
 
     // axis group
     chart.append("g")
