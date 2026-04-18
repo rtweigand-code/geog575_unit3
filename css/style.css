@@ -105,6 +105,7 @@ body {
 .xAxisLabel {
     font-size: 12px;
     fill: #444;
+    font-weight: 500;
 }
 
 /* axis line */

@@ -217,7 +217,7 @@ function setChart(csvData, colorScale) {
     chart.append("text")
         .attr("class", "xAxisLabel")
         .attr("x", chartWidth / 2)
-        .attr("y", chartHeight - 5)
+        .attr("y", chartHeight - 15)
         .attr("text-anchor", "middle")
         .text("U.S. States (sorted)");
 
