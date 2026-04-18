@@ -369,7 +369,7 @@ function changeAttribute(attribute, csvData) {
 
 
 // ======================================
-// HIGHLIGHT
+// HIGHLIGHT FEATURES
 // ======================================
 function highlight(props) {
 
