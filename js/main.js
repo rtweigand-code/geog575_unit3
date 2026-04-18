@@ -327,7 +327,7 @@ function changeAttribute(attribute, csvData) {
         });
 
     // update chart
-    updateChart(csvData, colorScale, 620, 600, 70, 25, 50, 665, 500);
+    updateChart(csvData, colorScale, 560, 600, 55, 15, 50, 490, 500);
 }
 
 
