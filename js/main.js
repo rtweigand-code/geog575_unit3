@@ -300,7 +300,7 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
             return chartInnerHeight - yScale(d[expressed]);
         })
         .style("fill", function(d) {
-            return growthColorScale(d.population_growth);
+            return colorScale(d[expressed]);
         });
 
     d3.select(".chartTitle")
