@@ -326,8 +326,8 @@ function changeAttribute(attribute, csvData) {
             return value != null ? colorScale(value) : "#ccc";
         });
 
-    // update chart
-    updateChart(csvData, colorScale, 560, 600, 55, 15, 50, 490, 500);
+    // update chart columns
+    updateChart(csvData, colorScale, 620, 600, 70, 25, 50, 525, 500);
 }
 
 
