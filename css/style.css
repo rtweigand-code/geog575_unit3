@@ -29,6 +29,15 @@ body {
     font-weight: bold;
 }
 
+.mapDescription {
+    max-width: 1000px;
+    margin: 10px auto;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+}
+
 /* dropdown row */
 .controls {
     margin-bottom: 18px;
