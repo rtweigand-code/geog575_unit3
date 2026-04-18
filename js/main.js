@@ -205,26 +205,28 @@ function addLegend(map, colorScale) {
 
     var legend = map.append("g")
         .attr("class", "legend")
-        .attr("transform", "translate(30, 450)");
+        .attr("transform", "translate(300, 520)"); // more centered
 
     var colors = colorScale.range();
 
+    // make boxes bigger + spaced better
     legend.selectAll("rect")
         .data(colors)
         .enter()
         .append("rect")
-        .attr("x", function(d, i) { return i * 40; })
+        .attr("x", function(d, i) { return i * 60; })
         .attr("y", 0)
-        .attr("width", 40)
-        .attr("height", 12)
+        .attr("width", 60)
+        .attr("height", 16)
         .attr("fill", function(d) { return d; })
-        .attr("stroke", "#999");
+        .attr("stroke", "#666");
 
+    // title above legend
     legend.append("text")
         .attr("x", 0)
-        .attr("y", -5)
+        .attr("y", -10)
         .text(formatAttributeName(expressed))
-        .style("font-size", "12px")
+        .style("font-size", "13px")
         .style("font-weight", "bold");
 }
 
@@ -348,7 +350,7 @@ function changeAttribute(attribute, csvData) {
 
     var colorScale = makeColorScale(csvData);
 
-    // update map
+    // update map colors
     d3.selectAll(".states")
         .transition()
         .duration(1000)
@@ -356,6 +358,10 @@ function changeAttribute(attribute, csvData) {
             var value = d.properties[expressed];
             return value != null ? colorScale(value) : "#ccc";
         });
+
+    // update legend when dropdown changes
+    d3.select(".legend").remove();
+    addLegend(d3.select(".map"), colorScale);
 
     // update chart
     updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, rightPadding, topBottomPadding, chartInnerWidth, chartInnerHeight);
