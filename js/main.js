@@ -2,7 +2,7 @@
 // GLOBAL VARIABLES
 // ======================================
 
-// variables user can switch between (economic stuff)
+// variables user can switch between
 var attrArray = [
     "median_income",
     "unemployment_rate",
@@ -12,6 +12,15 @@ var attrArray = [
 
 // start with income as default
 var expressed = attrArray[0];
+
+// chart settings
+var chartWidth = 620,
+    chartHeight = 600,
+    leftPadding = 70,
+    rightPadding = 25,
+    topBottomPadding = 50,
+    chartInnerWidth = chartWidth - leftPadding - rightPadding,
+    chartInnerHeight = chartHeight - topBottomPadding * 2;
 
 // run everything when page loads
 window.onload = setMap;
@@ -54,7 +63,7 @@ function setMap() {
         var csvData = data[0];
         var states = data[1];
 
-        // convert strings to numbers (otherwise nothing works right)
+        // convert strings to numbers
         csvData.forEach(function(d) {
             d.median_income = +d.median_income;
             d.unemployment_rate = +d.unemployment_rate;
@@ -69,7 +78,7 @@ function setMap() {
         // join csv data into the geojson
         joinData(statesGeo, csvData);
 
-        // build color scale
+        // build color scale based on current variable
         var colorScale = makeColorScale(csvData);
 
         // draw states
@@ -97,38 +106,11 @@ function setMap() {
                 d3.select(".infolabel").style("display", "none");
             });
 
-        
-        //create legend
-        function addLegend(map, colorScale) {
+        // add legend
+        addLegend(map, colorScale);
 
-            var legend = map.append("g")
-                .attr("class", "legend")
-                .attr("transform", "translate(30, 520)");
-
-            var colors = colorScale.range();
-
-            legend.selectAll("rect")
-                .data(colors)
-                .enter()
-                .append("rect")
-                .attr("x", function(d, i) { return i * 40; })
-                .attr("y", 0)
-                .attr("width", 40)
-                .attr("height", 12)
-                .attr("fill", function(d) { return d; })
-                .attr("stroke", "#999");
-
-            legend.append("text")
-                .attr("x", 0)
-                .attr("y", -5)
-                .text(formatAttributeName(expressed))
-                .style("font-size", "12px")
-                .style("font-weight", "bold");
-        }
-        // add dropdown
+        // add dropdown + chart
         createDropdown(csvData);
-
-        // add chart
         setChart(csvData, colorScale);
     }
 }
@@ -191,12 +173,12 @@ function createDropdown(csvData) {
 function makeColorScale(data) {
 
     var colors = [
-    "#8fd19e",
-    "#63be7b",
-    "#3fae63",
-    "#228b45",
-    "#0f6b35"
-];
+        "#8fd19e",
+        "#63be7b",
+        "#3fae63",
+        "#228b45",
+        "#0f6b35"
+    ];
 
     var scale = d3.scaleQuantile()
         .range(colors);
@@ -217,17 +199,40 @@ function makeColorScale(data) {
 
 
 // ======================================
+// LEGEND
+// ======================================
+function addLegend(map, colorScale) {
+
+    var legend = map.append("g")
+        .attr("class", "legend")
+        .attr("transform", "translate(30, 450)");
+
+    var colors = colorScale.range();
+
+    legend.selectAll("rect")
+        .data(colors)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) { return i * 40; })
+        .attr("y", 0)
+        .attr("width", 40)
+        .attr("height", 12)
+        .attr("fill", function(d) { return d; })
+        .attr("stroke", "#999");
+
+    legend.append("text")
+        .attr("x", 0)
+        .attr("y", -5)
+        .text(formatAttributeName(expressed))
+        .style("font-size", "12px")
+        .style("font-weight", "bold");
+}
+
+
+// ======================================
 // CREATE CHART
 // ======================================
 function setChart(csvData, colorScale) {
-
-    var chartWidth = 620,
-        chartHeight = 600,
-        leftPadding = 70,
-        rightPadding = 25,
-        topBottomPadding = 50,
-        chartInnerWidth = chartWidth - leftPadding - rightPadding,
-        chartInnerHeight = chartHeight - topBottomPadding * 2;
 
     var chart = d3.select(".vizRow")
         .append("svg")
@@ -274,7 +279,6 @@ function setChart(csvData, colorScale) {
             d3.select(".infolabel").style("display", "none");
         });
 
-
     updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, rightPadding, topBottomPadding, chartInnerWidth, chartInnerHeight);
 }
 
@@ -296,21 +300,20 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
         }) * 1.05]);
 
     var yAxis = d3.axisLeft(yScale)
-    .ticks(8)
-    .tickFormat(function(d) {
-        if (expressed === "median_income" || expressed === "gdp_per_capita") {
-            return "$" + d3.format(",.0f")(d);
-        } else {
-            return d3.format(".1f")(d) + "%";
-        }
-    });
+        .ticks(8)
+        .tickFormat(function(d) {
+            if (expressed === "median_income" || expressed === "gdp_per_capita") {
+                return "$" + d3.format(",.0f")(d);
+            } else {
+                return d3.format(".1f")(d) + "%";
+            }
+        });
 
     d3.select(".axis")
         .transition()
         .duration(1000)
         .call(yAxis);
 
-    var barPadding = 1;
     var barWidth = chartInnerWidth / csvData.length;
 
     d3.selectAll(".bars")
@@ -354,8 +357,8 @@ function changeAttribute(attribute, csvData) {
             return value != null ? colorScale(value) : "#ccc";
         });
 
-    // update chart columns
-    updateChart(csvData, colorScale, 620, 600, 70, 25, 50, 525, 500);
+    // update chart
+    updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, rightPadding, topBottomPadding, chartInnerWidth, chartInnerHeight);
 }
 
 
@@ -421,8 +424,6 @@ function moveLabel(event) {
 // ======================================
 // HELPERS
 // ======================================
-
-// make names look clean in dropdown + titles
 function formatAttributeName(attribute) {
     if (attribute === "median_income") return "Median Income";
     if (attribute === "unemployment_rate") return "Unemployment Rate";
@@ -432,7 +433,6 @@ function formatAttributeName(attribute) {
     return attribute;
 }
 
-// format values so they look right ($ vs %)
 function formatValue(attribute, value) {
 
     if (value == null || isNaN(value)) return "No data";
@@ -446,32 +446,4 @@ function formatValue(attribute, value) {
     }
 
     return value;
-}
-
-//create legend
-function addLegend(map, colorScale) {
-
-    var legend = map.append("g")
-        .attr("class", "legend")
-        .attr("transform", "translate(30, 520)");
-
-    var colors = colorScale.range();
-
-    legend.selectAll("rect")
-        .data(colors)
-        .enter()
-        .append("rect")
-        .attr("x", function(d, i) { return i * 40; })
-        .attr("y", 0)
-        .attr("width", 40)
-        .attr("height", 12)
-        .attr("fill", function(d) { return d; })
-        .attr("stroke", "#999");
-
-    legend.append("text")
-        .attr("x", 0)
-        .attr("y", -5)
-        .text(formatAttributeName(expressed))
-        .style("font-size", "12px")
-        .style("font-weight", "bold");
 }
