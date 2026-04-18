@@ -221,6 +221,26 @@ function addLegend(map, colorScale) {
         .attr("fill", function(d) { return d; })
         .attr("stroke", "#666");
 
+    // get min + max
+    var domain = colorScale.domain();
+    var minVal = d3.min(domain);
+    var maxVal = d3.max(domain);
+
+    // left (low)
+    legend.append("text")
+        .attr("x", 0)
+        .attr("y", 30)
+        .text(minVal.toFixed(1))
+        .style("font-size", "11px");
+
+    // right (high)
+    legend.append("text")
+        .attr("x", (colorScale.range().length - 1) * 60)
+        .attr("y", 30)
+        .attr("text-anchor", "end")
+        .text(maxVal.toFixed(1))
+        .style("font-size", "11px");
+
     // title above legend
     legend.append("text")
         .attr("x", 0)
