@@ -419,3 +419,31 @@ function formatValue(attribute, value) {
 
     return value;
 }
+
+//create legend
+function addLegend(map, colorScale) {
+
+    var legend = map.append("g")
+        .attr("class", "legend")
+        .attr("transform", "translate(30, 520)");
+
+    var colors = colorScale.range();
+
+    legend.selectAll("rect")
+        .data(colors)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) { return i * 40; })
+        .attr("y", 0)
+        .attr("width", 40)
+        .attr("height", 12)
+        .attr("fill", function(d) { return d; })
+        .attr("stroke", "#999");
+
+    legend.append("text")
+        .attr("x", 0)
+        .attr("y", -5)
+        .text(formatAttributeName(expressed))
+        .style("font-size", "12px")
+        .style("font-weight", "bold");
+}
