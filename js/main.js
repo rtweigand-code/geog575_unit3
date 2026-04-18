@@ -267,13 +267,6 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
             return d[expressed];
         }) * 1.05]);
 
-    // color scale for population growth (used for bar color)
-    var growthColorScale = d3.scaleQuantile()
-        .range(["#d0e1f2", "#74a9cf", "#2b8cbe", "#045a8d"])
-        .domain(csvData.map(function(d) {
-            return d.population_growth;
-        }));
-
     var yAxis = d3.axisLeft(yScale)
     .ticks(8)
     .tickFormat(function(d) {
