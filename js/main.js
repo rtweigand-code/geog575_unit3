@@ -193,10 +193,10 @@ function makeColorScale(data) {
 // ======================================
 function setChart(csvData, colorScale) {
 
-    var chartWidth = 560,
+    var chartWidth = 760,
         chartHeight = 600,
-        leftPadding = 55,
-        rightPadding = 15,
+        leftPadding = 70,
+        rightPadding = 25,
         topBottomPadding = 50,
         chartInnerWidth = chartWidth - leftPadding - rightPadding,
         chartInnerHeight = chartHeight - topBottomPadding * 2;
@@ -267,21 +267,30 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
             return d[expressed];
         }) * 1.05]);
 
-    var yAxis = d3.axisLeft(yScale).ticks(8);
+    var yAxis = d3.axisLeft(yScale)
+    .ticks(8)
+    .tickFormat(function(d) {
+        if (expressed === "median_income" || expressed === "gdp_per_capita") {
+            return "$" + d3.format(",.0f")(d);
+        } else {
+            return d3.format(".1f")(d) + "%";
+        }
+    });
 
     d3.select(".axis")
         .transition()
         .duration(1000)
         .call(yAxis);
 
-    var barWidth = chartInnerWidth / csvData.length;
+    var barOffset = 8;
+    var barWidth = (chartInnerWidth - barOffset) / csvData.length;
 
     d3.selectAll(".bars")
         .data(csvData, function(d) { return d.state; })
         .transition()
         .duration(1000)
         .attr("x", function(d, i) {
-            return leftPadding + i * barWidth;
+            return leftPadding + barOffset + i * barWidth;
         })
         .attr("width", barWidth - 1)
         .attr("y", function(d) {
@@ -318,7 +327,7 @@ function changeAttribute(attribute, csvData) {
         });
 
     // update chart
-    updateChart(csvData, colorScale, 560, 600, 55, 15, 50, 490, 500);
+    updateChart(csvData, colorScale, 760, 600, 70, 25, 50, 665, 500);
 }
 
 
