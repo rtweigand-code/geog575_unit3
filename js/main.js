@@ -193,7 +193,7 @@ function makeColorScale(data) {
 // ======================================
 function setChart(csvData, colorScale) {
 
-    var chartWidth = 760,
+    var chartWidth = 620,
         chartHeight = 600,
         leftPadding = 70,
         rightPadding = 25,
@@ -327,7 +327,7 @@ function changeAttribute(attribute, csvData) {
         });
 
     // update chart
-    updateChart(csvData, colorScale, 760, 600, 70, 25, 50, 665, 500);
+    updateChart(csvData, colorScale, 620, 600, 70, 25, 50, 665, 500);
 }
 
 
