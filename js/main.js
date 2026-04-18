@@ -290,7 +290,7 @@ function updateChart(csvData, colorScale, chartWidth, chartHeight, leftPadding, 
         .transition()
         .duration(1000)
         .attr("x", function(d, i) {
-            return leftPadding + i * barWidth;
+            return leftPadding + 6 + i * barWidth;
         })
         .attr("width", barWidth - 2)
         .attr("y", function(d) {
